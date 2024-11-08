@@ -2,19 +2,18 @@ import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
 import OrderModal from "../components/OrderModal";
 import { MdDelete } from "react-icons/md";
-const Cart = () => {
-  const [cart, setLocalCart] = useState([]);
+const Cart = ({ cart, setCart }) => {
   const [isOrderOpen, setIsOrderOpen] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setLocalCart(storedCart);
+    setCart(storedCart);
   }, []);
 
   const handleRemoveFromCart = (product) => {
     const updatedCart = cart.filter((item) => item.id !== product.id);
-    setLocalCart(updatedCart);
+    setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
@@ -24,7 +23,7 @@ const Cart = () => {
   };
 
   const clearCart = () => {
-    setLocalCart([]);
+    setCart([]);
     localStorage.removeItem("cart");
   };
 
