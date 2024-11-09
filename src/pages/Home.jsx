@@ -3,6 +3,9 @@ import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import OrderModal from "../components/OrderModal";
 import { Helmet } from "react-helmet";
+import AOS from "aos";
+import "aos/dist/aos.css"; // AOSning CSS faylini import qilish
+
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import Banner from "../assets/Banner.jpg";
 import "./Home.css";
@@ -13,6 +16,13 @@ const Home = ({ cart, setCart }) => {
   const [products, setProducts] = useState([]);
   const [likedProducts, setLikedProducts] = useState([]);
   const [loading, setLoading] = useState(true); // Loading holatini qo'shish
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+    });
+  }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -319,6 +329,7 @@ h78.747C231.693,100.736,232.77,106.162,232.77,111.694z"
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {filteredProducts.map((product) => (
             <div
+              data-aos="fade-up"
               key={product.id}
               className="border rounded-lg shadow-lg flex flex-col p-1 h-full"
             >
