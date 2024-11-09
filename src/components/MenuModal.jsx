@@ -52,7 +52,7 @@ const MenuModal = ({ isMenuOpen, setIsMenuOpen }) => {
             </li>
           </ul>
           <div className="flex gap-1 items-center font-semibold text-[15px]">
-            <span>Sayt yaratuvchisi:</span>
+            <span>Developer:</span>
             <span className="text-blue-500">
               <a href="https://t.me/javohir_fd">@javohir_fd</a>
             </span>
